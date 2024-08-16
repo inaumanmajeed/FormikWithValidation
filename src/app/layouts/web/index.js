@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, NavBar, SideBar, ChildrenWrapper } from "../styles/styles";
+import { Container, NavBar, SideBar, ChildrenWrapper } from "./styles/styles";
 
 const LayoutMainWeb = ({ children }) => {
   return (
