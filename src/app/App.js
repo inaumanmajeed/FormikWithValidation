@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import RoutesMain from "app/routes/Routes";
+import "app/assets/styles/reset.css";
 
-const App = () => {
+const index = () => {
   return (
-    <div>Formik & Yup</div>
-  )
-}
+    <>
+      <RoutesMain />
+    </>
+  );
+};
 
-export default App
+export default index;
