@@ -10,24 +10,24 @@ const BasicInfoCard = () => {
     <UserInputFormLayoutCard img={BasicImg} title={"Basic Information"}>
       <FormContainer>
         <Field
-          name="firstName"
+          name="fullName"
           type="text"
-          label="First Name"
-          placeholder="Enter your first name"
+          label="Full Name"
+          placeholder="ie. John Doe"
           component={CustomInput}
         />
         <Field
-          name="lastName"
-          type="text"
-          label="Last Name"
-          placeholder="Enter your last name"
+          name="age"
+          type="number"
+          label="Age"
+          placeholder="ie. 25"
           component={CustomInput}
         />
         <Field
           name="email"
           type="email"
           label="Email"
-          placeholder="Enter your email"
+          placeholder="ie. abc@xyz.com"
           component={CustomInput}
         />
       </FormContainer>

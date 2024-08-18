@@ -6,28 +6,28 @@ import { MainContainerWrapper } from "../styles";
 import ValidationSchema from "app/utils/ValidationSchema";
 
 const initialValues = {
-  firstName: "",
-  lastName: "",
+  fullName: "",
+  age: "",
   email: "",
-  phoneNumber: "",
-  address: "",
-  city: "",
-  state: "",
-  zip: "",
-  country: "",
+  // phoneNumber: "",
+  // address: "",
+  // city: "",
+  // state: "",
+  // zip: "",
+  // country: "",
 };
 
 const Home = () => {
-  const onSubmit = async (values) => {
-    const { firstName, lastName, email } = values;
+  const onSubmit = (values) => {
+    const { fullName, age, email } = values;
 
     const body = {
-      firstName,
-      lastName,
+      fullName,
+      age,
       email,
     };
 
-    console.log(body);
+    console.log("Form submitted with values:", body);
   };
 
   return (
