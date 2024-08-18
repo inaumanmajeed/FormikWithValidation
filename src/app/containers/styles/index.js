@@ -11,6 +11,9 @@ const MainContainerWrapper = styled("div")(({ theme }) => ({
     width: "100%",
     height: "100%",
     overflowY: "auto",
+    '& .form__main': {
+        width: "100%",
+    },
     [theme.breakpoints.down("md")]: {
         padding: "8px",
     },
