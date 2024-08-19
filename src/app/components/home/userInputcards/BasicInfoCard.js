@@ -7,7 +7,11 @@ import { FormContainer } from "../styles";
 
 const BasicInfoCard = ({ boxShadow }) => {
   return (
-    <UserInputFormLayoutCard boxShadow={boxShadow} img={BasicImg} title={"Basic Information"}>
+    <UserInputFormLayoutCard
+      boxShadow={boxShadow}
+      img={BasicImg}
+      title={"Basic Information"}
+    >
       <FormContainer>
         <Field
           name="fullName"
