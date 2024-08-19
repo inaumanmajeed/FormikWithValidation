@@ -10,10 +10,12 @@ import {
   saveDataToLocalStorage,
   deleteDataFromLocalStorage,
 } from "app/hooks/LocalStorageAPI";
+import { useNavigate } from "react-router-dom";
 
 const ShowOrUpdate = () => {
   const [isEditable, setIsEditable] = useState(false);
-  console.log("🚀 ~ ShowOrUpdate ~ isEditable:", isEditable);
+  const [countdown, setCountdown] = useState(null);
+  const navigate = useNavigate();
 
   const [initialValues, setInitialValues] = useState({
     fullName: "",
@@ -56,6 +58,21 @@ const ShowOrUpdate = () => {
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (countdown === null) return;
+
+    if (countdown === 0) {
+      navigate("/");
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setCountdown(countdown - 1);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [countdown, navigate]);
 
   const onSubmit = async (values) => {
     const basicInfo = {
@@ -114,6 +131,7 @@ const ShowOrUpdate = () => {
         workTravel: "",
         livingWithFamily: "",
       });
+      setCountdown(5);
     } catch (error) {
       console.error("Error deleting data from local storage:", error);
     }
@@ -163,7 +181,9 @@ const ShowOrUpdate = () => {
                   type="button"
                   onClick={handleDelete}
                 >
-                  Delete
+                  {countdown !== null
+                    ? `Returning back to home in ${countdown} seconds`
+                    : "Delete"}
                 </button>
               </FormButtons>
             </Form>
