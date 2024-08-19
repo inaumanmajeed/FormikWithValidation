@@ -6,7 +6,7 @@ import CustomInput from "app/components/shared/input/Input";
 import { FormContainer } from "../styles";
 import SchoolIcon from "app/assets/images/Home/school.svg";
 
-const EducationInfoCard = ({ boxShadow }) => {
+const EducationInfoCard = ({ boxShadow, isEditable }) => {
   return (
     <UserInputFormLayoutCard
       boxShadow={boxShadow}
@@ -18,6 +18,7 @@ const EducationInfoCard = ({ boxShadow }) => {
           name="highestEducationalQualification"
           type="text"
           label="Highest Educational Qualification"
+          disabled={isEditable}
           placeholder="ie. MBA"
           component={CustomInput}
         />
@@ -26,12 +27,14 @@ const EducationInfoCard = ({ boxShadow }) => {
           type="text"
           label="College/University"
           placeholder="ie. LUMS"
+          disabled={isEditable}
           component={CustomInput}
         />
         <Field
           name="employedIn"
           type="text"
           label="Employed In"
+          disabled={isEditable}
           placeholder="ie. Private"
           component={CustomInput}
         />
@@ -39,12 +42,14 @@ const EducationInfoCard = ({ boxShadow }) => {
           name="occupation"
           type="text"
           label="Occupation"
+          disabled={isEditable}
           placeholder="ie. Software Engineer"
           component={CustomInput}
         />
         <Field
           name="countryOfResidence"
           type="text"
+          disabled={isEditable}
           label="Country of Residence"
           placeholder="ie. USA"
           component={CustomInput}
@@ -53,6 +58,7 @@ const EducationInfoCard = ({ boxShadow }) => {
           name="annualIncome"
           type="number"
           label="Annual Income"
+          disabled={isEditable}
           placeholder="ie. 100000"
           component={CustomInput}
         />
@@ -61,6 +67,7 @@ const EducationInfoCard = ({ boxShadow }) => {
           type="text"
           label="Work Travel"
           placeholder="ie. Often"
+          disabled={isEditable}
           component={CustomInput}
         />
         <Field
@@ -68,6 +75,7 @@ const EducationInfoCard = ({ boxShadow }) => {
           type="text"
           label="Living with Family"
           placeholder="ie. Yes"
+          disabled={isEditable}
           component={CustomInput}
         />
       </FormContainer>

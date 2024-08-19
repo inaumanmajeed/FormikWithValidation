@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, Form } from "formik";
+import { useNavigate } from "react-router-dom";
 import LayoutMainWeb from "app/layouts/web";
 import BasicInfoCard from "app/components/home/userInputcards/BasicInfoCard";
-import { MainContainerWrapper } from "../styles";
+import { FormButtons, MainContainerWrapper } from "../styles";
 import ValidationSchema from "app/utils/ValidationSchema";
 import EducationInfoCard from "app/components/home/userInputcards/Education";
+import { saveDataToLocalStorage } from "app/hooks/LocalStorageAPI";
+import axiosInstance from "app/axios/AxiosInstance";
 
 const initialValues = {
-  // Basic Info
   fullName: "",
   age: "",
   email: "",
@@ -16,7 +18,6 @@ const initialValues = {
   maritalStatus: "",
   location: "",
   nationality: "",
-  // Education Info
   highestEducationalQualification: "",
   collegeUniversity: "",
   employedIn: "",
@@ -29,56 +30,54 @@ const initialValues = {
 
 const Home = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const onSubmit = (values) => {
-    const {
-      // Basic Info
-      fullName,
-      age,
-      email,
-      phoneNumber,
-      gender,
-      maritalStatus,
-      location,
-      nationality,
+  const [isEditable, setIsEditable] = useState(false);
 
-      // Education Info
-      highestEducationalQualification,
-      collegeUniversity,
-      employedIn,
-      occupation,
-      countryOfResidence,
-      annualIncome,
-      workTravel,
-      livingWithFamily,
-    } = values;
+  const navigate = useNavigate();
 
+  const onSubmit = async (values) => {
     const basicInfo = {
-      fullName,
-      age,
-      email,
-      phoneNumber,
-      gender,
-      maritalStatus,
-      location,
-      nationality,
+      fullName: values.fullName,
+      age: values.age,
+      email: values.email,
+      phoneNumber: values.phoneNumber,
+      gender: values.gender,
+      maritalStatus: values.maritalStatus,
+      location: values.location,
+      nationality: values.nationality,
     };
+
     const educationInfo = {
-      highestEducationalQualification,
-      collegeUniversity,
-      employedIn,
-      occupation,
-      countryOfResidence,
-      annualIncome,
-      workTravel,
-      livingWithFamily,
+      highestEducationalQualification: values.highestEducationalQualification,
+      collegeUniversity: values.collegeUniversity,
+      employedIn: values.employedIn,
+      occupation: values.occupation,
+      countryOfResidence: values.countryOfResidence,
+      annualIncome: values.annualIncome,
+      workTravel: values.workTravel,
+      livingWithFamily: values.livingWithFamily,
     };
 
     const body = {
       basicInfo,
       educationInfo,
     };
-    console.log("🚀 ~ onSubmit ~ body:", body);
-    setIsSubmitted(true);
+
+    try {
+      // const response = await axiosInstance.post("/data", body);
+      // console.log("Data submitted:", response.data);
+
+      // Save to local storage
+      saveDataToLocalStorage(body);
+
+      setIsSubmitted(true);
+      setIsEditable(true);
+    } catch (error) {
+      console.error("Error submitting data:", error);
+    }
+    // console.log("🚀 ~ onSubmit ~ body:", body);
+  };
+  const HandleRedirect = () => {
+    navigate("/update");
   };
 
   return (
@@ -91,11 +90,32 @@ const Home = () => {
         >
           {() => (
             <Form className="form__main">
-              <BasicInfoCard boxShadow={"0px 0px 40px 0px #FFEEC266"} />
-              <EducationInfoCard boxShadow={"0px 0px 50px 0px #FFB0C44D"} />
-              <button className="submit__btn" type="submit">
-                {isSubmitted ? "Submitted" : "Submit"}
-              </button>
+              <BasicInfoCard
+                isEditable={isEditable}
+                boxShadow={"0px 0px 40px 0px #FFEEC266"}
+              />
+
+              <EducationInfoCard
+                isEditable={isEditable}
+                boxShadow={"0px 0px 50px 0px #FFB0C44D"}
+              />
+              <FormButtons className="input__form__buttons">
+                <button
+                  className="submit__btn"
+                  type="submit"
+                >
+                  {isSubmitted ? "Submitted" : "Submit"}
+                </button>
+                {isSubmitted && (
+                  <button
+                    onClick={HandleRedirect}
+                    type="button"
+                    className="redirect__btn"
+                  >
+                    View Details
+                  </button>
+                )}
+              </FormButtons>
             </Form>
           )}
         </Formik>
