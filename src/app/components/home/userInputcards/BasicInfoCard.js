@@ -5,9 +5,9 @@ import { Field } from "formik";
 import CustomInput from "app/components/shared/input/Input";
 import { FormContainer } from "../styles";
 
-const BasicInfoCard = () => {
+const BasicInfoCard = ({ boxShadow }) => {
   return (
-    <UserInputFormLayoutCard img={BasicImg} title={"Basic Information"}>
+    <UserInputFormLayoutCard boxShadow={boxShadow} img={BasicImg} title={"Basic Information"}>
       <FormContainer>
         <Field
           name="fullName"
@@ -28,6 +28,41 @@ const BasicInfoCard = () => {
           type="email"
           label="Email"
           placeholder="ie. abc@xyz.com"
+          component={CustomInput}
+        />
+        <Field
+          name="phoneNumber"
+          type="number"
+          label="Phone Number"
+          placeholder="ie. +923144444444"
+          component={CustomInput}
+        />
+        <Field
+          name="gender"
+          type="text"
+          label="Gender"
+          placeholder="ie. Male"
+          component={CustomInput}
+        />
+        <Field
+          name="maritalStatus"
+          type="text"
+          label="Marital Status"
+          placeholder="ie. Single"
+          component={CustomInput}
+        />
+        <Field
+          name="location"
+          type="text"
+          label="Location"
+          placeholder="ie. USA"
+          component={CustomInput}
+        />
+        <Field
+          name="nationality"
+          type="text"
+          label="Nationality"
+          placeholder="ie. USA"
           component={CustomInput}
         />
       </FormContainer>

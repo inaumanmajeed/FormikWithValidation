@@ -1,5 +1,4 @@
 import { styled } from "@mui/material/styles";
-import zIndex from "@mui/material/styles/zIndex";
 
 const CustomInputMainContainer = styled("div")(({ theme }) => ({
   display: "flex",
@@ -8,6 +7,7 @@ const CustomInputMainContainer = styled("div")(({ theme }) => ({
   width: "48%",
   minWidth: "350px",
   position: "relative",
+  marginBottom: "12px",
 
   "& label": {
     fontSize: "14px",

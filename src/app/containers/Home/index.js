@@ -1,33 +1,84 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import LayoutMainWeb from "app/layouts/web";
 import BasicInfoCard from "app/components/home/userInputcards/BasicInfoCard";
 import { MainContainerWrapper } from "../styles";
 import ValidationSchema from "app/utils/ValidationSchema";
+import EducationInfoCard from "app/components/home/userInputcards/Education";
 
 const initialValues = {
+  // Basic Info
   fullName: "",
   age: "",
   email: "",
-  // phoneNumber: "",
-  // address: "",
-  // city: "",
-  // state: "",
-  // zip: "",
-  // country: "",
+  phoneNumber: "",
+  gender: "",
+  maritalStatus: "",
+  location: "",
+  nationality: "",
+  // Education Info
+  highestEducationalQualification: "",
+  collegeUniversity: "",
+  employedIn: "",
+  occupation: "",
+  countryOfResidence: "",
+  annualIncome: "",
+  workTravel: "",
+  livingWithFamily: "",
 };
 
 const Home = () => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const onSubmit = (values) => {
-    const { fullName, age, email } = values;
-
-    const body = {
+    const {
+      // Basic Info
       fullName,
       age,
       email,
+      phoneNumber,
+      gender,
+      maritalStatus,
+      location,
+      nationality,
+
+      // Education Info
+      highestEducationalQualification,
+      collegeUniversity,
+      employedIn,
+      occupation,
+      countryOfResidence,
+      annualIncome,
+      workTravel,
+      livingWithFamily,
+    } = values;
+
+    const basicInfo = {
+      fullName,
+      age,
+      email,
+      phoneNumber,
+      gender,
+      maritalStatus,
+      location,
+      nationality,
+    };
+    const educationInfo = {
+      highestEducationalQualification,
+      collegeUniversity,
+      employedIn,
+      occupation,
+      countryOfResidence,
+      annualIncome,
+      workTravel,
+      livingWithFamily,
     };
 
-    console.log("Form submitted with values:", body);
+    const body = {
+      basicInfo,
+      educationInfo,
+    };
+    console.log("🚀 ~ onSubmit ~ body:", body);
+    setIsSubmitted(true);
   };
 
   return (
@@ -40,8 +91,11 @@ const Home = () => {
         >
           {() => (
             <Form className="form__main">
-              <BasicInfoCard />
-              <button type="submit">Submit</button>
+              <BasicInfoCard boxShadow={"0px 0px 40px 0px #FFEEC266"} />
+              <EducationInfoCard boxShadow={"0px 0px 50px 0px #FFB0C44D"} />
+              <button className="submit__btn" type="submit">
+                {isSubmitted ? "Submitted" : "Submit"}
+              </button>
             </Form>
           )}
         </Formik>

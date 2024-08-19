@@ -7,7 +7,7 @@ const LayoutMainWeb = ({ children }) => {
       <NavBar className="main__layout__nav">
         <a href="/">NavBar</a>
       </NavBar>
-      <SideBar className="main__layout__sidebar"></SideBar>
+      <SideBar className="main__layout__sidebar">Sidebar</SideBar>
       <ChildrenWrapper>{children}</ChildrenWrapper>
     </Container>
   );

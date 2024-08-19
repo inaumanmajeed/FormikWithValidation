@@ -1,8 +1,8 @@
 import { styled } from "@mui/material/styles";
 
 const InputCardContainer = styled("div")(({ theme, boxShadow }) => ({
-  height: "100%",
   width: "100%",
+  marginBottom: "2rem",
   border: "1px solid #ddd",
   borderRadius: "16px",
   display: "flex",
